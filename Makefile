@@ -1,4 +1,3 @@
-
 # define the name of the virtual environment directory
 VENV := venv
 
