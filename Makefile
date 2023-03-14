@@ -15,8 +15,17 @@ venv: $(VENV)/bin/activate
 run: venv
 	./$(VENV)/bin/python3 app.py
 
+activate:
+	. $(VENV)/bin/activate
+
+deactivate:
+	deactivate
+
+test-sourcing:
+	. source-me.sh
+
 clean:
 	rm -rf $(VENV)
 	find . -type f -name '*.pyc' -delete
 
-.PHONY: all venv run clean
+.PHONY: all venv run clean activate deactivate test-sourcing
