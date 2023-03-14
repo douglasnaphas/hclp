@@ -1,8 +1,8 @@
-name: Test with Python
+name: Test and deploy with Python
 
 on:
   push:
-    branches: [ "*" ]
+    branches: ["*"]
 
 permissions:
   contents: read
@@ -11,14 +11,20 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-    - name: Set up Python 3.11
-      uses: actions/setup-python@v4
-      with:
-        python-version: "3.11"
-    - name: Install
-      run: |
-        make install
-    - name: Test
-      run: |
-        make test
+      - uses: actions/checkout@v3
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+      - name: Install
+        run: |
+          make install
+      - name: Test
+        run: |
+          make test
+      - name: Deploy
+        env:
+          TF_TOKEN_app_terraform_io: ${{ secrets.TF_TOKEN_APP_TERRAFORM_IO }}
+        run: |
+          terraform init
+          terraform apply -auto-approve
