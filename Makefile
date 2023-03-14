@@ -1,7 +1,5 @@
-# define the name of the virtual environment directory
 VENV := venv
 
-# default target, when make executed without arguments
 all: help
 
 help:
@@ -14,7 +12,6 @@ install: requirements.txt venv
 	. $(VENV)/bin activate; \
 	./$(VENV)/bin/pip install -r requirements.txt
 
-# venv is a shortcut target
 venv: $(VENV)/bin/activate
 
 test: venv
