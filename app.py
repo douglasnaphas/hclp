@@ -14,7 +14,8 @@ def main():
     out_dict = dict()
     for var_idx, var_dict in enumerate(variables_dict['variable']):
         for var_name in var_dict: # only one property in this dict
-            out_dict[var_name] = var_dict[var_name]['value']
+            if 'value' in var_dict[var_name].keys():
+                out_dict[var_name] = var_dict[var_name]['value']
     print("writing terraform.tfvars.json as:")
     print(json.dumps(out_dict))
     with open('terraform/terraform.tfvars.json', 'a') as tfvars_json_file:

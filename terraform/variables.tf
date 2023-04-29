@@ -15,3 +15,8 @@ variable "greeting_prefix" {
   type = string
   default = ""
 }
+
+variable "greeting_bool" {
+  description = "some bool"
+  type = bool
+}
